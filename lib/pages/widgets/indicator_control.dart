@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'circular_indicator.dart';
+import 'dot_indicator.dart';
 
 class IndicatorControl extends StatelessWidget {
   const IndicatorControl({
@@ -14,19 +14,10 @@ class IndicatorControl extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(3, (index) {
-        return Column(
-          children: [
-            CircularIndicator(
-              positionIndex: index,
-              currentIndex: actual,
-            ),
-            SizedBox(
-              width: actual == index ? 25 : 20,
-            )
-          ],
-        );
-      }),
+      children: List.generate(
+        3,
+        (index) => DotIndicator(positionIndex: index, currentIndex: actual),
+      ),
     );
   }
 }

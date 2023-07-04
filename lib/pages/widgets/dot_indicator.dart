@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CircularIndicator extends StatelessWidget {
-  const CircularIndicator({
+class DotIndicator extends StatelessWidget {
+  const DotIndicator({
     super.key,
     this.width = 10,
     this.height = 10,
@@ -19,6 +19,7 @@ class CircularIndicator extends StatelessWidget {
     return Container(
       width: positionIndex == currentIndex ? width * 2 : width,
       height: height,
+      margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         color: Colors.green,

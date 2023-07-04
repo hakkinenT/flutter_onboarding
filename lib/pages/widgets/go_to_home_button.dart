@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../home_page.dart';
 
-class SkipButton extends StatelessWidget {
-  const SkipButton({
+class GoToHomeButton extends StatelessWidget {
+  const GoToHomeButton({
     super.key,
+    required this.label,
   });
+
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class SkipButton extends StatelessWidget {
           ),
         );
       },
-      child: const Text('Skip'),
+      child: Text(label),
     );
   }
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding/core/constants/constant.dart';
 
-import 'widgets/custom_elevated_button.dart';
+import 'widgets/go_to_home_button.dart';
 import 'widgets/indicator_control.dart';
 import 'widgets/next_button.dart';
-import 'widgets/skip_button.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -16,7 +15,6 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   late final PageController controller;
   int actual = 0;
-  late List<Widget> circularIndexes;
 
   @override
   void initState() {
@@ -38,7 +36,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
         child: Column(
           children: [
             Expanded(
-              flex: actual < 2 ? 7 : 9,
               child: PageView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   controller: controller,
@@ -50,27 +47,27 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   },
                   itemBuilder: (context, index) => pages[index]),
             ),
-            if (actual < 2)
-              Expanded(
-                flex: 1,
-                child: IndicatorControl(actual: actual),
-              ),
-            actual != 2
-                ? Row(
-                    children: [
-                      const SkipButton(),
-                      const Spacer(),
-                      NextButton(
+            IndicatorControl(actual: actual),
+            Row(
+              children: [
+                if (actual != 2) const GoToHomeButton(label: 'Skip'),
+                const Spacer(),
+                actual != 2
+                    ? NextButton(
                         onPressed: () {
                           setState(() {
-                            final next = actual + 1;
-                            controller.jumpToPage(next);
+                            controller.nextPage(
+                              duration: const Duration(milliseconds: 400),
+                              curve: Curves.easeIn,
+                            );
                           });
                         },
+                      )
+                    : const GoToHomeButton(
+                        label: 'Done',
                       ),
-                    ],
-                  )
-                : const CustomElevatedButton()
+              ],
+            )
           ],
         ),
       ),
