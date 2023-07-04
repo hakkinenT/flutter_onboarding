@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding/pages/onboarding_slide_1.dart';
+import 'package:flutter_onboarding/pages/onboarding_slide.dart';
 
 const String investimentImage = 'assets/images/investment_data.svg';
 const String mobilePaymentImage = 'assets/images/mobile_payments.svg';
@@ -12,5 +12,6 @@ List<Widget> pages = [
   ),
   const OnboardingSlide(
       imageUrl: mobilePaymentImage, text: 'Faça pagamentos online'),
-  const Text('data 3')
+  const OnboardingSlide(
+      imageUrl: investimentImage, text: 'Gerencie seus investimentos')
 ];
