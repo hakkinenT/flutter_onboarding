@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding/pages/home_page.dart';
+
+import 'widgets/custom_elevated_button.dart';
+import 'widgets/indicator_control.dart';
+import 'widgets/next_button.dart';
+import 'widgets/skip_button.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -35,6 +39,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             Expanded(
               flex: actual < 2 ? 7 : 9,
               child: PageView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   controller: controller,
                   itemCount: 3,
                   onPageChanged: (index) {
@@ -51,92 +56,26 @@ class _OnboardingPageState extends State<OnboardingPage> {
             if (actual < 2)
               Expanded(
                 flex: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(3, (index) {
-                    return Column(
-                      children: [
-                        CircularIndicator(
-                          positionIndex: index,
-                          currentIndex: actual,
-                        ),
-                        SizedBox(
-                          width: actual == index ? 25 : 20,
-                        )
-                      ],
-                    );
-                  }),
-                ),
+                child: IndicatorControl(actual: actual),
               ),
             actual != 2
                 ? Row(
                     children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const HomePage(),
-                            ),
-                          );
-                        },
-                        child: const Text('Skip'),
-                      ),
+                      const SkipButton(),
                       const Spacer(),
-                      TextButton(
+                      NextButton(
                         onPressed: () {
                           setState(() {
                             final next = actual + 1;
                             controller.jumpToPage(next);
                           });
                         },
-                        child: const Text('Next'),
                       ),
                     ],
                   )
-                : SizedBox(
-                    width: double.maxFinite,
-                    height: 45,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Colors.green,
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'Entrar',
-                      ),
-                    ),
-                  )
+                : const CustomElevatedButton()
           ],
         ),
-      ),
-    );
-  }
-}
-
-class CircularIndicator extends StatelessWidget {
-  const CircularIndicator({
-    super.key,
-    this.width = 10,
-    this.height = 10,
-    required this.positionIndex,
-    required this.currentIndex,
-  });
-
-  final double width;
-  final double height;
-  final int positionIndex;
-  final int currentIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: positionIndex == currentIndex ? width * 2 : width,
-      height: height,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Colors.green,
       ),
     );
   }
