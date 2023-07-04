@@ -63,7 +63,7 @@ class OnboardingImage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return AspectRatio(
-      aspectRatio: size.width <= 541 ? 1 / 1 : 3.6,
+      aspectRatio: size.width <= 541 ? 1 / 1 : 2.8,
       child: SvgPicture.asset(imageUrl),
     );
   }

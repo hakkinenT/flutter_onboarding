@@ -30,6 +30,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(35.0),
@@ -48,25 +50,28 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   itemBuilder: (context, index) => pages[index]),
             ),
             IndicatorControl(actual: actual),
-            Row(
-              children: [
-                if (actual != 2) const GoToHomeButton(label: 'Skip'),
-                const Spacer(),
-                actual != 2
-                    ? NextButton(
-                        onPressed: () {
-                          setState(() {
-                            controller.nextPage(
-                              duration: const Duration(milliseconds: 400),
-                              curve: Curves.easeIn,
-                            );
-                          });
-                        },
-                      )
-                    : const GoToHomeButton(
-                        label: 'Done',
-                      ),
-              ],
+            SizedBox(
+              width: size.width < 600 ? double.maxFinite : size.width * 0.5,
+              child: Row(
+                children: [
+                  if (actual != 2) const GoToHomeButton(label: 'Skip'),
+                  const Spacer(),
+                  actual != 2
+                      ? NextButton(
+                          onPressed: () {
+                            setState(() {
+                              controller.nextPage(
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeIn,
+                              );
+                            });
+                          },
+                        )
+                      : const GoToHomeButton(
+                          label: 'Done',
+                        ),
+                ],
+              ),
             )
           ],
         ),
