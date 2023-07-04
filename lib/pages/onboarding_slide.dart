@@ -61,7 +61,7 @@ class OnboardingImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1.3,
+      aspectRatio: 1 / 1,
       child: SvgPicture.asset(imageUrl),
     );
   }
