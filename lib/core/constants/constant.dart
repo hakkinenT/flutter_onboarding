@@ -10,6 +10,7 @@ List<Widget> pages = [
     imageUrl: personalFinance,
     text: 'Controle suas finanças pessoais',
   ),
-  const Text('data 2'),
+  const OnboardingSlide(
+      imageUrl: mobilePaymentImage, text: 'Faça pagamentos online'),
   const Text('data 3')
 ];
