@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_onboarding/core/constants/constant.dart';
 
 import 'widgets/custom_elevated_button.dart';
 import 'widgets/indicator_control.dart';
@@ -47,11 +48,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       actual = index;
                     });
                   },
-                  itemBuilder: (context, index) {
-                    return Center(
-                      child: Text('Page $index'),
-                    );
-                  }),
+                  itemBuilder: (context, index) => pages[index]),
             ),
             if (actual < 2)
               Expanded(
