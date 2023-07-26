@@ -10,7 +10,7 @@ Onboarding Page é um projeto simples, desenvolvido com o objetivo de explorar m
 
 
 ## Principais funcionalidades
-- Pular a Onboarding diretamente para a Home Page
+- Pular da Onboarding diretamente para a Home Page
 
 
 # Tecnologias utilizadas
